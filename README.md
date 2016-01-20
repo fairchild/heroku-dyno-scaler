@@ -1,4 +1,4 @@
-Simple lambda function to help scale heroku dynos.
+Simple AWS lambda function to help scale heroku dynos.
 The function receives SNS published events that contain a json
 message specifying the dyno type and desired quantity.
 

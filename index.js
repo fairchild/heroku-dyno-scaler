@@ -4,6 +4,11 @@ var HerokuClient = require('heroku-client');
 var heroku = new HerokuClient({ token: process.env.HEROKU_API_TOKEN });
 var app = heroku.apps(process.env.HEROKU_APP_NAME);
 
+
+exports.parsedSNSmessage = function(event) {
+  return JSON.parse(event.Records[0].Sns.Message)
+}
+
 exports.formationUpdate = function (desiredState, context) {
   app.formation(desiredState.type)
       .update({quantity: desiredState.quantity}, function(err, data) {
@@ -18,14 +23,10 @@ exports.formationUpdate = function (desiredState, context) {
   );
 }
 
-function parsedSNSmessage(event) {
-  return JSON.parse(event.Records[0].Sns.Message)
-}
-
 exports.handler = function(event, context) {
   console.log(process.env.HEROKU_APP_NAME);
   console.log(JSON.stringify(event));
-  var desiredState = parsedSNSmessage(event)
+  var desiredState = exports.parsedSNSmessage(event)
   console.log('desiredState --> ', desiredState);
   app.formation(desiredState.type).info(function(err, data) {
     if (err) {
