@@ -1,0 +1,28 @@
+{
+  "name": "heroku-dyno-scaler",
+  "version": "0.1.0",
+  "description": "AWS lambda function to scale heroku dynos in response to events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fairchild/heroku-dyno-scaler.git"
+  },
+  "keywords": [
+    "heroku",
+    "aws",
+    "dyno",
+    "worker",
+    "lambda"
+  ],
+  "author": "Michael Fairchild",
+  "license": "MIT",
+  "devDependencies": {
+    "node-lambda": "^0.7.1"
+  },
+  "dependencies": {
+    "heroku-client": "^2.4.0"
+  }
+}
